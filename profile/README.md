@@ -37,17 +37,17 @@
 
 
   
-## 🗂 (4) 핵심 이벤트 플로우 & MSA 보드
+## 3. 핵심 이벤트 플로우 & MSA 보드
 👉 [MSA 보드 보기](URL_기입)  
 
 ---
 
-## 3. 각 서비스 리포 링크 & One-line Mission
+## 4. 각 서비스 리포 링크 & One-line Mission
 
 | 서비스 | 리포지토리 | One-line Mission |
 |--------|------------|------------------|
-| 🚘 Car Service | [car-service](URL_기입) | 차량 정보 등록/조회/상태 관리 |
-| 👤 User Service | [user-service](URL_기입) | 사용자·권한 관리 |
+| 🚘 Car Service | [car-service](https://github.com/KT-GIGA-FMS/car-service) | 차량 정보 등록/조회/상태 관리 |
+| 👤 User Service | [user-service](https://github.com/KT-GIGA-FMS/user-service) | 사용자·권한 관리 |
 | 📅 Reservation Service | [reservation-service](URL_기입) | 차량 예약/배차 관리 |
 | 📍 Tracking Service | [tracking-service](URL_기입) | 실시간 위치 데이터 수집 |
 | 🔌 Realtime Gateway | [realtime-gateway](URL_기입) | 실시간 WS/SSE 브로드캐스트 |
@@ -56,7 +56,7 @@
 
 ---
 
-## 4. ERD 산출물
+## 5. ERD 산출물
 - **ERD (RDB - PostgreSQL)**  
   👉 [ERD 보기](URL_기입)  
 
@@ -68,25 +68,101 @@
 
 ---
 
-## 5.아키텍처 & API 계약
+## 6.아키텍처 & API 계약
 
 - **아키텍처 설계도**  
   👉 [아키텍처 다이어그램](URL_기입)  
 
 - **API 계약 (엔드포인트 + DTO)**  
-  👉 [API 명세](URL_기입)  
+### [🚗 Car Service (8080)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Car_Service_API.md) 
+```
+POST   /api/v1/cars/register          - 차량 등록
+GET    /api/v1/cars                   - 차량 목록 조회 (페이지네이션)
+```
+
+### [📊 Analytics Service (8083)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Analytics_Service_API.md)
+```
+GET    /api/v1/analytics/vehicles/{id}/statistics    - 차량 통계 조회
+POST   /api/v1/analytics/vehicles/statistics/batch  - 차량 통계 일괄 조회
+```
+
+### [🚀 DTG Service (8085)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/DTG_Service_API.md)
+```
+POST   /api/v1/dtg/trips/start        - 운행 시작
+POST   /api/v1/dtg/trips/end          - 운행 종료
+GET    /api/v1/dtg/trips/active       - 활성 운행 목록
+GET    /api/v1/dtg/trips/{id}         - 특정 차량 운행 상태
+GET    /api/v1/dtg/health             - 서비스 상태
+```
+
+### [📍 Car Tracking Service (8080)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Car_Tracking_Service_API.md)
+```
+POST   /api/v1/tracking/trips/start   - DTG 운행 시작 수신
+POST   /api/v1/tracking/trips/end     - DTG 운행 종료 수신
+POST   /api/v1/tracking/data          - DTG 실시간 데이터 수신
+```
+
+### 🌐 WebSocket Endpoints
+```
+DTG Service:        ws://localhost:8085/ws
+Car Tracking:       ws://localhost:8080/ws
+```
+
+### 🧰Swagger UI
+```
+Car Service:        http://localhost:8080/swagger-ui.html
+Analytics:          http://localhost:8083/swagger-ui.html
+DTG Service:        http://localhost:8085/swagger-ui.html
+```
 
 ---
 
-## 6. ADR (Architecture Decision Records)
+## 7. ADR (Architecture Decision Records)
 
-- ADR-001: PostgreSQL 선택 이유  
-- ADR-002: Redis Stream/ZSET 사용 근거  
-- ADR-003: NoSQL 활용 목적  
-- ADR-004: Azure APIM 도입  
-- ADR-005: WebSocket/SSE 실시간 처리  
+(1) ADR-001: RDB로 PostgreSQL 선택
 
-👉 [ADR 전체 보기](URL_기입)  
+Context: 예약 중복 방지와 시간 범위 쿼리가 많음
+Alternatives: MySQL(팀에 익숙), 기능적 차이는 크지 않음
+Decision: 수업에서 다룬 경험과 학습을 고려해 PostgreSQL 선택
+Consequence: 안정적인 트랜잭션 처리와 시계열 쿼리 지원
+
+
+
+(2) ADR-002: 실시간 파이프는 Redis (Stream + ZSET)
+
+Context: 법인 차량 약 100대 관제 규모에는 Redis 성능 충분
+Alternatives: Kafka(대규모에 적합) → 현재는 오버엔지니어링
+Decision: Redis Streams + ZSET
+Consequence: 운영 단순, 필요 시 대규모 확장 가능
+
+
+
+(3) ADR-003: API Gateway는 Azure APIM
+
+Context: 키 관리, 레이트리밋, CORS 중앙화 필요
+Alternatives: Kong, NGINX, Tyk, AWS API Gateway 등 존재
+Decision: 가장 빠르게 도입 가능한 Azure APIM 선택
+Consequence: 서비스별 독립 배포, 보안정책 일원화
+
+
+
+(4) ADR-004: 실시간 전송은 WebSocket, 대체는 SSE
+
+Context: 지도 실시간 업데이트
+Alternatives: Polling(비효율)
+Decision: WS 우선, 장애 시 SSE 폴백
+Consequence: 방화벽/프록시 호환성 개선
+
+
+
+(5) ADR-005: 예약 겹침 방지는 코드 로직으로 처리
+
+Context: 분산 환경에서 동일 시간대에 중복 예약 시도 가능성 존재
+Alternatives: DB 제약 조건(EXCLUDE USING GIST)으로 강제, 다만 적용 난이도와 학습 부담 있음
+Decision: 현재는 애플리케이션 코드 레벨에서 겹침 검사 로직을 구현하고, 추후 운영 안정화 단계에서 DB 제약 조건 적용 예정
+Consequence: 초기 개발과 적용이 용이, 단 코드 레벨에서의 레이스 컨디션 위험은 존재
+
+
 
 ---
 
