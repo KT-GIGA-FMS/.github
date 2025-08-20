@@ -54,14 +54,10 @@
 ---
 
 ## 5. ERD 산출물
-- **ERD (RDB - PostgreSQL)**  
-  👉 [ERD 보기](URL_기입)  
 
-- **Document Schema (NoSQL - CosmosDB/Mongo)**  
-  👉 [Schema 보기](URL_기입)  
+- **ERD **  
+<img width="751" height="675" alt="image" src="https://github.com/user-attachments/assets/972ed7f1-35e8-4d8d-be08-34d11054253f" />
 
-- **Redis/Memcached Key 설계표**  
-  👉 [Key 설계표](URL_기입)  
 
 ---
 
