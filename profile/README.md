@@ -1,6 +1,7 @@
 # 🚗 KT GIGA FMS
 
 ## 🌐 공유 링크
+- [Notion](https://www.notion.so/KT-250de2e870a180fbb45ef1ea86d7874e?source=copy_link)
 - [미로보드](https://miro.com/app/board/uXjVJT7T_I8=/)
 - [DB/ERD](https://www.erdcloud.com/d/aqyjwmcWrcmSoYD4S)
 - [기획서 초안](https://docs.google.com/document/d/1HPhWYdSCaW_UycXsQGsRFQ6wy3SvAwCacChCETTccKY/edit?tab=t.0)
