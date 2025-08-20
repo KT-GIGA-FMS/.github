@@ -1,4 +1,4 @@
-## 0. 🚗 법인 차량 관제 서비스 (KT DTG FMS) 프로젝트
+## 🚗 법인 차량 관제 서비스 (KT DTG FMS) 프로젝트
 
 실시간 차량 위치 추적 · 예약 관리 · 운행 이력 분석을 제공하는 MSA 기반 법인 차량 관제 플랫폼
 - [프로젝트 기획서](https://docs.google.com/document/d/1HPhWYdSCaW_UycXsQGsRFQ6wy3SvAwCacChCETTccKY/edit?tab=t.0)
@@ -48,11 +48,8 @@
 |--------|------------|------------------|
 | 🚘 Car Service | [car-service](https://github.com/KT-GIGA-FMS/car-service) | 차량 정보 등록/조회/상태 관리 |
 | 👤 User Service | [user-service](https://github.com/KT-GIGA-FMS/user-service) | 사용자·권한 관리 |
-| 📅 Reservation Service | [reservation-service](URL_기입) | 차량 예약/배차 관리 |
-| 📍 Tracking Service | [tracking-service](URL_기입) | 실시간 위치 데이터 수집 |
-| 🔌 Realtime Gateway | [realtime-gateway](URL_기입) | 실시간 WS/SSE 브로드캐스트 |
-| 📊 Driving Service | [driving-service](URL_기입) | 운행 이력 및 통계 관리 |
-| ⚙️ ETL Worker | [etl-worker](URL_기입) | Redis→RDB/NoSQL ETL 파이프라인 |
+| 📍 Car Tracking Service | [car-tracking-service](https://github.com/KT-GIGA-FMS/car-tracking-service) | 실시간 위치 데이터 수집 |
+| ⚙️ Analytics Service| [analytics-service](https://github.com/KT-GIGA-FMS/analytics-service) | 대시보드로 데이터 분석 |
 
 ---
 
@@ -119,48 +116,48 @@ DTG Service:        http://localhost:8085/swagger-ui.html
 
 ## 7. ADR (Architecture Decision Records)
 
-(1) ADR-001: RDB로 PostgreSQL 선택
+**(1) ADR-001: RDB로 PostgreSQL 선택**
 
-Context: 예약 중복 방지와 시간 범위 쿼리가 많음
-Alternatives: MySQL(팀에 익숙), 기능적 차이는 크지 않음
-Decision: 수업에서 다룬 경험과 학습을 고려해 PostgreSQL 선택
-Consequence: 안정적인 트랜잭션 처리와 시계열 쿼리 지원
-
-
-
-(2) ADR-002: 실시간 파이프는 Redis (Stream + ZSET)
-
-Context: 법인 차량 약 100대 관제 규모에는 Redis 성능 충분
-Alternatives: Kafka(대규모에 적합) → 현재는 오버엔지니어링
-Decision: Redis Streams + ZSET
-Consequence: 운영 단순, 필요 시 대규모 확장 가능
+- Context: 예약 중복 방지와 시간 범위 쿼리가 많음
+- Alternatives: MySQL(팀에 익숙), 기능적 차이는 크지 않음
+- Decision: 수업에서 다룬 경험과 학습을 고려해 PostgreSQL 선택
+- Consequence: 안정적인 트랜잭션 처리와 시계열 쿼리 지원
 
 
 
-(3) ADR-003: API Gateway는 Azure APIM
+**(2) ADR-002: 실시간 파이프는 Redis (Stream + ZSET)**
 
-Context: 키 관리, 레이트리밋, CORS 중앙화 필요
-Alternatives: Kong, NGINX, Tyk, AWS API Gateway 등 존재
-Decision: 가장 빠르게 도입 가능한 Azure APIM 선택
-Consequence: 서비스별 독립 배포, 보안정책 일원화
-
-
-
-(4) ADR-004: 실시간 전송은 WebSocket, 대체는 SSE
-
-Context: 지도 실시간 업데이트
-Alternatives: Polling(비효율)
-Decision: WS 우선, 장애 시 SSE 폴백
-Consequence: 방화벽/프록시 호환성 개선
+- Context: 법인 차량 약 100대 관제 규모에는 Redis 성능 충분
+- Alternatives: Kafka(대규모에 적합) → 현재는 오버엔지니어링
+- Decision: Redis Streams + ZSET
+- Consequence: 운영 단순, 필요 시 대규모 확장 가능
 
 
 
-(5) ADR-005: 예약 겹침 방지는 코드 로직으로 처리
+**(3) ADR-003: API Gateway는 Azure APIM**
 
-Context: 분산 환경에서 동일 시간대에 중복 예약 시도 가능성 존재
-Alternatives: DB 제약 조건(EXCLUDE USING GIST)으로 강제, 다만 적용 난이도와 학습 부담 있음
-Decision: 현재는 애플리케이션 코드 레벨에서 겹침 검사 로직을 구현하고, 추후 운영 안정화 단계에서 DB 제약 조건 적용 예정
-Consequence: 초기 개발과 적용이 용이, 단 코드 레벨에서의 레이스 컨디션 위험은 존재
+- Context: 키 관리, 레이트리밋, CORS 중앙화 필요
+- Alternatives: Kong, NGINX, Tyk, AWS API Gateway 등 존재
+- Decision: 가장 빠르게 도입 가능한 Azure APIM 선택
+- Consequence: 서비스별 독립 배포, 보안정책 일원화
+
+
+
+**(4) ADR-004: 실시간 전송은 WebSocket, 대체는 SSE**
+
+- Context: 지도 실시간 업데이트
+- Alternatives: Polling(비효율)
+- Decision: WS 우선, 장애 시 SSE 폴백
+- Consequence: 방화벽/프록시 호환성 개선
+
+
+
+**(5) ADR-005: 예약 겹침 방지는 코드 로직으로 처리**
+
+- Context: 분산 환경에서 동일 시간대에 중복 예약 시도 가능성 존재
+- Alternatives: DB 제약 조건(EXCLUDE USING GIST)으로 강제, 다만 적용 난이도와 학습 부담 있음
+- Decision: 현재는 애플리케이션 코드 레벨에서 겹침 검사 로직을 구현하고, 추후 운영 안정화 단계에서 DB 제약 조건 적용 예정
+- Consequence: 초기 개발과 적용이 용이, 단 코드 레벨에서의 레이스 컨디션 위험은 존재
 
 
 
