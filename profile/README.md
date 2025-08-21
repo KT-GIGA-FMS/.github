@@ -44,14 +44,17 @@
 
 ## 4. 각 서비스 리포 링크 & One-line Mission
 
-| 서비스 | 리포지토리 | One-line Mission |
-|--------|------------|------------------|
-| 🚘 Car Service | [car-service](https://github.com/KT-GIGA-FMS/car-service) | 차량 정보 등록/조회/상태 관리 |
-| 👤 User Service | [user-service](https://github.com/KT-GIGA-FMS/user-service) | 사용자·권한 관리 |
-| 📍 Car Tracking Service | [car-tracking-service](https://github.com/KT-GIGA-FMS/car-tracking-service) | 실시간 위치 데이터 수집 |
-| ⚙️ Analytics Service| [analytics-service](https://github.com/KT-GIGA-FMS/analytics-service) | 대시보드로 데이터 분석 |
+| 서비스                     | 리포지토리                                                                       | One-line Mission              |
+| ----------------------- | --------------------------------------------------------------------------- | ----------------------------- |
+| 🌐 Front-End            | [front-end](https://github.com/KT-GIGA-FMS/front-end)                       | 관리자와 운전자가 이용할 수 있는 웹 인터페이스 제공 |
+| 🚘 Car Service          | [car-service](https://github.com/KT-GIGA-FMS/car-service)                   | 차량 정보 등록/조회/상태 관리             |
+| 👤 User Service         | [user-service](https://github.com/KT-GIGA-FMS/user-service)                 | 사용자 계정/권한 관리                  |
+| 📍 Car Tracking Service | [car-tracking-service](https://github.com/KT-GIGA-FMS/car-tracking-service) | 차량 위치 수집 및 실시간 스트리밍           |
+| 📊 Analytics Service    | [analytics-service](https://github.com/KT-GIGA-FMS/analytics-service)       | 운행 데이터 분석 및 대시보드 제공           |
+| 🤖 AI Agent             | [ai-agent](https://github.com/KT-GIGA-FMS/ai-agent)                         | 차량 예약/배차 요청 처리 AI 대화형 에이전트    |
+| 🚗 DTG                  | [DTG](https://github.com/KT-GIGA-FMS/DTG)                                   | 차량 디지털 운행기록장치 연동              |
+| ⚙️ .github              | [.github](https://github.com/KT-GIGA-FMS/.github)                           | 공통 워크플로우 및 설정 관리              |
 
----
 
 ## 5. ERD 산출물
 
@@ -165,8 +168,8 @@ DTG Service:        http://localhost:8085/swagger-ui.html
 - [Notion](https://www.notion.so/KT-250de2e870a180fbb45ef1ea86d7874e?source=copy_link)
 - [미로보드](https://miro.com/app/board/uXjVJT7T_I8=/)
 - [DB/ERD](https://www.erdcloud.com/d/aqyjwmcWrcmSoYD4S)
-- [기획서 초안](https://docs.google.com/document/d/1HPhWYdSCaW_UycXsQGsRFQ6wy3SvAwCacChCETTccKY/edit?tab=t.0)
-- [FP 산정 시트 초안](https://docs.google.com/spreadsheets/d/11p7Wmf7TJH4ZsfxWPAp8_TwIe4qGc4qaDQb3Sh7QISA/edit?gid=2082954959#gid=2082954959)
+- [기획서](https://docs.google.com/document/d/1HPhWYdSCaW_UycXsQGsRFQ6wy3SvAwCacChCETTccKY/edit?tab=t.0)
+- [FP 산정 시트](https://docs.google.com/spreadsheets/d/11p7Wmf7TJH4ZsfxWPAp8_TwIe4qGc4qaDQb3Sh7QISA/edit?gid=2082954959#gid=2082954959)
 
 ---
 
