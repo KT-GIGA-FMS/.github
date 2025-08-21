@@ -178,9 +178,10 @@ DTG Service:        http://localhost:8085/swagger-ui.html
   - 🌱 브랜치 컨벤션
 
   ```
-  main                  : 기본 브랜치
+  main                  : 메인 브랜치
+  deploy                : 단위 배포 브랜치
   dev                   : 개발 통합 브랜치
-  feat/#번호-설명        : 기능 개발 브랜치
+  feat/#번호-설명         : 기능 개발 브랜치
   ```
 
   - 📝 커밋 컨벤션
