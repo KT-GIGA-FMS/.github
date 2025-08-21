@@ -1,6 +1,11 @@
-## 🚗 법인 차량 관제 서비스 (KT DTG FMS) 프로젝트
+# 🚗 법인 차량 관제 서비스 (KT DTG FMS) 프로젝트
+## 🚀 **실시간 차량 관제 · 예약 관리 · 운행 이력 분석을 제공하는 MSA 기반 법인 차량 관제 플랫폼**
 
-실시간 차량 위치 추적 · 예약 관리 · 운행 이력 분석을 제공하는 MSA 기반 법인 차량 관제 플랫폼
+
+* DTG : Digital Tacho Graph (디지털 운행 기록 장치)
+* FMS : Fleet Management System (통합 관리 서비스)
+
+
 - [프로젝트 기획서](https://docs.google.com/document/d/1HPhWYdSCaW_UycXsQGsRFQ6wy3SvAwCacChCETTccKY/edit?tab=t.0)
 
   
