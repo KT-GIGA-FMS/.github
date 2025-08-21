@@ -175,6 +175,20 @@ DTG Service:        http://localhost:8085/swagger-ui.html
 
 - [아이디어 모음집](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/ROADMAP.md)
 - 컨벤션
-  - <img width="300" height="120" alt="image" src="https://github.com/user-attachments/assets/b45a1627-055f-4919-b00e-7c92a51a6660" />
-  - <img width="240" height="85" alt="image" src="https://github.com/user-attachments/assets/6d113334-b8cf-4f21-b36b-aa502fdc4e9e" />
+  - 🌱 브랜치 컨벤션
 
+  ```
+  main                  : 기본 브랜치
+  dev                   : 개발 통합 브랜치
+  feat/#번호-설명        : 기능 개발 브랜치
+  ```
+
+  - 📝 커밋 컨벤션
+  
+  ```
+  [타입/#이슈번호]: 작업 내용
+  
+  - 상세 변경 사항 1
+  - 상세 변경 사항 2
+  ```
+  
