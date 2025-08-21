@@ -160,6 +160,8 @@ DTG Service:        http://localhost:8085/swagger-ui.html
 
 ## 🌐 공유 링크
 - [github projects](https://github.com/orgs/KT-GIGA-FMS/projects/3)
+  - <img width="1912" height="1036" alt="image" src="https://github.com/user-attachments/assets/6df38afe-7d37-4b4e-8b93-cf450789523c" />
+
 - [Notion](https://www.notion.so/KT-250de2e870a180fbb45ef1ea86d7874e?source=copy_link)
 - [미로보드](https://miro.com/app/board/uXjVJT7T_I8=/)
 - [DB/ERD](https://www.erdcloud.com/d/aqyjwmcWrcmSoYD4S)
