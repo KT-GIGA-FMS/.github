@@ -5,19 +5,21 @@
 * DTG : Digital Tacho Graph (디지털 운행 기록 장치)
 * FMS : Fleet Management System (통합 관리 서비스)
 
+## 📑 목차
 
-- [프로젝트 기획서](https://docs.google.com/document/d/1HPhWYdSCaW_UycXsQGsRFQ6wy3SvAwCacChCETTccKY/edit?tab=t.0)
+- [✨ 프로젝트 특장점](#1-프로젝트-특장점)
+- [📊 핵심 이벤트 플로우 & MSA 보드](#2-서비스-아키텍처-및-핵심-이벤트-플로우)
+- [🧩 각 서비스 리포 링크 & One-line Mission](#3-각-서비스-리포-링크--one-line-mission)
+- [🗂️ ERD 산출물](#4-erd)
+- [🔌 API 엔드포인트 및 DTO](#5-api-및-dto)
+- [📜 ADR (Architecture Decision Records)](#6-adr-architecture-decision-records)
+- [🌍 컨벤션 및 공유 자료 모음](#7-컨벤션-및-공유-자료-모음)
+
+
 
   
 ---
-
-## 1. FP (Function Point) 산출물
-
-- [FP 산출표](https://docs.google.com/spreadsheets/d/11p7Wmf7TJH4ZsfxWPAp8_TwIe4qGc4qaDQb3Sh7QISA/edit?usp=sharing)
-
-  
----
-## 2. 프로젝트 특장점 및 근거
+## 1. 프로젝트 특장점
 
 - 🚀 **스트리밍 데이터 처리**: Redis Stream & Pub/Sub 기반
 
@@ -46,12 +48,18 @@
   ``` 자연어 입력만으로 예약·취소가 가능하며, LLM 기반 의도 파악으로 사용성을 크게 개선했습니다. Redis 캐시를 활용하여 대화의 맥락을 이어갑니다. 또한 필요 시 Agent가 자체 툴(ex: 차량 가능 여부 조회, 기존 예약 검증)을 스스로 호출하여 단순 LLM 추론보다 정확하고 일관된 결과를 제공합니다. ```
   
 
-## 3. 핵심 이벤트 플로우 & MSA 보드
-👉 [MSA 보드 보기](URL_기입)  
+## 2. 서비스 아키텍처 및 핵심 이벤트 플로우
+
+- 시스템 아키텍처
+![헤드셋 원정대 - 시스템 아키텍처](https://github.com/user-attachments/assets/9dc58135-5e4e-4c8c-bd9a-49a12f86ff24)
+
+- 핵심 이벤트 플로우
+![헤드셋 원정대 - 핵심 이벤트 플로우 (1)](https://github.com/user-attachments/assets/986200c7-cd11-4c0b-a037-e7cc8266df82)
+
 
 ---
 
-## 4. 각 서비스 리포 링크 & One-line Mission
+## 3. 각 서비스 리포 링크 & One-line Mission
 
 | 서비스                     | 리포지토리                                                                       | One-line Mission              |
 | ----------------------- | --------------------------------------------------------------------------- | ----------------------------- |
@@ -64,18 +72,15 @@
 | 🚗 DTG                  | [DTG](https://github.com/KT-GIGA-FMS/DTG)                                   | 차량 디지털 운행기록장치 연동              |
 | ⚙️ .github              | [.github](https://github.com/KT-GIGA-FMS/.github)                           | 공통 워크플로우 및 설정 관리              |
 
+---
 
-## 5. ERD 산출물
+## 4. ERD
 
 <img width="880" height="812" alt="ERD_kt-dtg-fms" src="https://github.com/user-attachments/assets/a91a0be9-28a8-4194-8a5c-615d6811b4c8" />
 
-
-
 ---
 
-## 6.아키텍처 & API 계약
-![헤드셋 원정대 - 프레임 1](https://github.com/user-attachments/assets/4fbee7e5-7483-411e-a870-4e6e4922c3c8)
-
+## 5. api 및 dto
 
 - **API 계약 (엔드포인트 + DTO)**  
 ### [🚗 Car Service (8080)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Car_Service_API.md) 
@@ -121,7 +126,7 @@ DTG Service:        http://localhost:8085/swagger-ui.html
 
 ---
 
-## 7. ADR (Architecture Decision Records)
+## 6. ADR (Architecture Decision Records)
 
 **(1) ADR-001: RDB로 PostgreSQL 선택**
 
@@ -166,19 +171,18 @@ DTG Service:        http://localhost:8085/swagger-ui.html
 - Decision: 현재는 애플리케이션 코드 레벨에서 겹침 검사 로직을 구현하고, 추후 운영 안정화 단계에서 DB 제약 조건 적용 예정
 - Consequence: 초기 개발과 적용이 용이, 단 코드 레벨에서의 레이스 컨디션 위험은 존재
 
-
-
 ---
+  
 
-## 🌐 공유 링크
+## 7. 컨벤션 및 공유 자료 모음
+- [프로젝트 기획서](https://docs.google.com/document/d/1HPhWYdSCaW_UycXsQGsRFQ6wy3SvAwCacChCETTccKY/edit?tab=t.0)
+- [FP 산정 시트](https://docs.google.com/spreadsheets/d/11p7Wmf7TJH4ZsfxWPAp8_TwIe4qGc4qaDQb3Sh7QISA/edit?gid=2082954959#gid=2082954959)
+
 - [github projects](https://github.com/orgs/KT-GIGA-FMS/projects/3)
   - <img width="1912" height="1036" alt="image" src="https://github.com/user-attachments/assets/6df38afe-7d37-4b4e-8b93-cf450789523c" />
-
 - [Notion](https://www.notion.so/KT-250de2e870a180fbb45ef1ea86d7874e?source=copy_link)
-- [미로보드](https://miro.com/app/board/uXjVJT7T_I8=/)
+- [Miro Board](https://miro.com/app/board/uXjVJT7T_I8=/)
 - [DB/ERD](https://www.erdcloud.com/d/aqyjwmcWrcmSoYD4S)
-- [기획서](https://docs.google.com/document/d/1HPhWYdSCaW_UycXsQGsRFQ6wy3SvAwCacChCETTccKY/edit?tab=t.0)
-- [FP 산정 시트](https://docs.google.com/spreadsheets/d/11p7Wmf7TJH4ZsfxWPAp8_TwIe4qGc4qaDQb3Sh7QISA/edit?gid=2082954959#gid=2082954959)
 
 ---
 
