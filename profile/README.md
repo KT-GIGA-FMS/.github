@@ -62,9 +62,8 @@
 ---
 
 ## 6.아키텍처 & API 계약
+![헤드셋 원정대 - 프레임 1](https://github.com/user-attachments/assets/4fbee7e5-7483-411e-a870-4e6e4922c3c8)
 
-- **아키텍처 설계도**  
-  👉 [아키텍처 다이어그램](URL_기입)  
 
 - **API 계약 (엔드포인트 + DTO)**  
 ### [🚗 Car Service (8080)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Car_Service_API.md) 
