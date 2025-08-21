@@ -55,8 +55,8 @@
 
 ## 5. ERD 산출물
 
-- **ERD **  
-<img width="751" height="675" alt="image" src="https://github.com/user-attachments/assets/972ed7f1-35e8-4d8d-be08-34d11054253f" />
+<img width="880" height="812" alt="ERD_kt-dtg-fms" src="https://github.com/user-attachments/assets/a91a0be9-28a8-4194-8a5c-615d6811b4c8" />
+
 
 
 ---
