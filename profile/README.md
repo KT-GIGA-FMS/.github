@@ -175,6 +175,18 @@ DTG Service:        http://localhost:8085/swagger-ui.html
 
 - [아이디어 모음집](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/ROADMAP.md)
 - 컨벤션
+  - 이슈 컨벤션
+  ```
+  [라벨명] 이슈 이름
+  
+  ### 💬 기능 설명
+  > 기능에 대해 간략히 적어주세요.
+  
+  ### 🎯 구현 내용
+  - [ ] TODO
+  - [ ] TODO
+  - [ ] TODO
+  ```
   - 🌱 브랜치 컨벤션
 
   ```
