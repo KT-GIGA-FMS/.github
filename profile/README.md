@@ -241,6 +241,9 @@ DTG Service:        http://localhost:8085/swagger-ui.html
   - 상세 변경 사항 2
   ```
 
+- [github projects 운영](https://github.com/orgs/KT-GIGA-FMS/projects/3)
+  - <img width="1912" height="1036" alt="image" src="https://github.com/user-attachments/assets/6df38afe-7d37-4b4e-8b93-cf450789523c" />
+
 ---
   
 ## 9. 공유 자료 모음
@@ -248,13 +251,9 @@ DTG Service:        http://localhost:8085/swagger-ui.html
 - [FP 산정 시트](https://docs.google.com/spreadsheets/d/11p7Wmf7TJH4ZsfxWPAp8_TwIe4qGc4qaDQb3Sh7QISA/edit?gid=2082954959#gid=2082954959)
 
 - [github projects](https://github.com/orgs/KT-GIGA-FMS/projects/3)
-  - <img width="1912" height="1036" alt="image" src="https://github.com/user-attachments/assets/6df38afe-7d37-4b4e-8b93-cf450789523c" />
 - [Notion](https://www.notion.so/KT-250de2e870a180fbb45ef1ea86d7874e?source=copy_link)
 - [Miro Board](https://miro.com/app/board/uXjVJT7T_I8=/)
 - [DB/ERD](https://www.erdcloud.com/d/aqyjwmcWrcmSoYD4S)
-
-
-
 - [아이디어 모음집](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/ROADMAP.md)
 
   
