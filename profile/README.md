@@ -157,11 +157,61 @@
 ---
 
 ## 5. 회복탄력성 & 관측
-• 타임아웃/재시도/폴백 정책 요약(서비스 간 구간별 값)
-• 폴백 예시(예: Unknown User)와 트리거 조건
-• Correlation-Id 전파 규칙 + 로그 키( cid, svc, elapsedMs, status )
-• (있다면) Application Insights 대시보드/쿼리 링크
+**1) APIM 전역 정책 적용**
+- CORS 설정: 모든 Origin(*), 주요 HTTP 메서드(GET/POST/PUT/PATCH/DELETE/OPTIONS), 헤더(*) 허용.
+- Correlation-Id 전파: X-Correlation-Id가 없으면 UUID 생성 후 요청·응답·에러에 헤더 삽입.
+- 백엔드 타임아웃: forward-request timeout="10" 적용.
+- Preflight(OPTIONS) 처리: 프리플라이트 요청은 바로 응답(set-body("")).
 
+**실제 적용한 Policy**
+  ```
+  <policies>
+    <inbound>
+      <set-variable name="cid" value="@(
+          context.Request.Headers.ContainsKey("X-Correlation-Id")
+            ? context.Request.Headers.GetValueOrDefault("X-Correlation-Id")
+            : System.Guid.NewGuid().ToString()
+        )" />
+      <set-header name="X-Correlation-Id" exists-action="override">
+        <value>@((string)context.Variables["cid"])</value>
+      </set-header>
+  
+      <cors allow-credentials="false">
+        <allowed-origins><origin>*</origin></allowed-origins>
+        <allowed-methods>
+          <method>GET</method><method>POST</method><method>PUT</method>
+          <method>PATCH</method><method>DELETE</method><method>OPTIONS</method>
+        </allowed-methods>
+        <allowed-headers><header>*</header></allowed-headers>
+        <expose-headers><header>*</header></expose-headers>
+      </cors>
+  
+      <choose>
+        <when condition="@((string)context.Request.Method == \"OPTIONS\")">
+          <return-response>
+            <set-body>@("")</set-body>
+          </return-response>
+        </when>
+      </choose>
+    </inbound>
+  
+    <backend>
+      <forward-request timeout="10" />
+    </backend>
+  
+    <outbound>
+      <set-header name="X-Correlation-Id" exists-action="override">
+        <value>@((string)context.Variables["cid"])</value>
+      </set-header>
+    </outbound>
+  
+    <on-error>
+      <set-header name="X-Correlation-Id" exists-action="override">
+        <value>@((string)context.Variables["cid"])</value>
+      </set-header>
+    </on-error>
+  </policies>
+  ```
 ---
 
 ## 6. 데모 시나리오
