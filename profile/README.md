@@ -62,8 +62,6 @@
   
     ``` 자연어 입력만으로 예약·취소가 가능하며, LLM 기반 의도 파악으로 사용성을 크게 개선했습니다. Redis 캐시를 활용하여 대화의 맥락을 이어갑니다. 또한 필요 시 Agent가 자체 툴(ex: 차량 가능 여부 조회, 기존 예약 검증)을 스스로 호출하여 단순 LLM 추론보다 정확하고 일관된 결과를 제공합니다. ```
 
-- Swagger, 헬스체크
-
 ---
 
 ## 1. 서비스 아키텍처 및 핵심 이벤트 플로우
@@ -100,48 +98,54 @@
 
 ## 3. API 계약
 
-- **API 계약 (엔드포인트 + DTO)**  
-### [🚗 Car Service (8080)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Car_Service_API.md) 
-```
-POST   /api/v1/cars/register          - 차량 등록
-GET    /api/v1/cars                   - 차량 목록 조회 (페이지네이션)
-```
+- [car-tracking-service Swagger](https://car-tracking-service-hmarhqf6a0f8abb4.koreacentral-01.azurewebsites.net/swagger-ui/index.html)
+- [user-service Swagger](https://user-service-fbh3ctfghxhzerbq.koreacentral-01.azurewebsites.net/swagger-ui/index.html)
+- [car-services Swagger](https://car-services-e6bmdpbjcffqfzd2.koreacentral-01.azurewebsites.net/swagger-ui/index.html)
+- [analytics-service Swagger](https://analytics-service-dngpgmgkbph2adbu.koreacentral-01.azurewebsites.net/swagger-ui/index.html)
+- [ai-agent Swagger](https://ai-agent-b9asf5aebwajamfy.koreacentral-01.azurewebsites.net/docs#/)
 
-### [📊 Analytics Service (8083)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Analytics_Service_API.md)
-```
-GET    /api/v1/analytics/vehicles/{id}/statistics    - 차량 통계 조회
-POST   /api/v1/analytics/vehicles/statistics/batch  - 차량 통계 일괄 조회
-```
-
-### [🚀 DTG Service (8085)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/DTG_Service_API.md)
-```
-POST   /api/v1/dtg/trips/start        - 운행 시작
-POST   /api/v1/dtg/trips/end          - 운행 종료
-GET    /api/v1/dtg/trips/active       - 활성 운행 목록
-GET    /api/v1/dtg/trips/{id}         - 특정 차량 운행 상태
-GET    /api/v1/dtg/health             - 서비스 상태
-```
-
-### [📍 Car Tracking Service (8080)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Car_Tracking_Service_API.md)
-```
-POST   /api/v1/tracking/trips/start   - DTG 운행 시작 수신
-POST   /api/v1/tracking/trips/end     - DTG 운행 종료 수신
-POST   /api/v1/tracking/data          - DTG 실시간 데이터 수신
-```
-
-### 🌐 WebSocket Endpoints
-```
-DTG Service:        ws://localhost:8085/ws
-Car Tracking:       ws://localhost:8080/ws
-```
-
-### 🧰Swagger UI
-```
-Car Service:        http://localhost:8080/swagger-ui.html
-Analytics:          http://localhost:8083/swagger-ui.html
-DTG Service:        http://localhost:8085/swagger-ui.html
-```
----
+- API 계약 (엔드포인트 + DTO)
+  ### [🚗 Car Service (8080)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Car_Service_API.md) 
+  ```
+  POST   /api/v1/cars/register          - 차량 등록
+  GET    /api/v1/cars                   - 차량 목록 조회 (페이지네이션)
+  ```
+  
+  ### [📊 Analytics Service (8083)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Analytics_Service_API.md)
+  ```
+  GET    /api/v1/analytics/vehicles/{id}/statistics    - 차량 통계 조회
+  POST   /api/v1/analytics/vehicles/statistics/batch  - 차량 통계 일괄 조회
+  ```
+  
+  ### [🚀 DTG Service (8085)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/DTG_Service_API.md)
+  ```
+  POST   /api/v1/dtg/trips/start        - 운행 시작
+  POST   /api/v1/dtg/trips/end          - 운행 종료
+  GET    /api/v1/dtg/trips/active       - 활성 운행 목록
+  GET    /api/v1/dtg/trips/{id}         - 특정 차량 운행 상태
+  GET    /api/v1/dtg/health             - 서비스 상태
+  ```
+  
+  ### [📍 Car Tracking Service (8080)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Car_Tracking_Service_API.md)
+  ```
+  POST   /api/v1/tracking/trips/start   - DTG 운행 시작 수신
+  POST   /api/v1/tracking/trips/end     - DTG 운행 종료 수신
+  POST   /api/v1/tracking/data          - DTG 실시간 데이터 수신
+  ```
+  
+  ### 🌐 WebSocket Endpoints
+  ```
+  DTG Service:        ws://localhost:8085/ws
+  Car Tracking:       ws://localhost:8080/ws
+  ```
+  
+  ### 🧰Swagger UI
+  ```
+  Car Service:        http://localhost:8080/swagger-ui.html
+  Analytics:          http://localhost:8083/swagger-ui.html
+  DTG Service:        http://localhost:8085/swagger-ui.html
+  ```
+  ---
 
 ## 4. 데이터 모델
 
