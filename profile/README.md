@@ -20,7 +20,7 @@
 ---
 
 ## 0. 소개
-- 주요 기능
+- **주요 기능**
   - 실시간 차량 운행 현황 확인
   - 차량 예약 AI Agent
   - 차량 정보 관리
@@ -66,22 +66,28 @@
 
 ## 1. 서비스 아키텍처 및 핵심 이벤트 플로우
 
-- 서비스 아키텍처
+- **서비스 아키텍처**
 ![헤드셋 원정대 - 시스템 아키텍처](https://github.com/user-attachments/assets/9dc58135-5e4e-4c8c-bd9a-49a12f86ff24)
 
-- 핵심 이벤트 플로우
+- **핵심 이벤트 플로우**
 ![헤드셋 원정대 - 핵심 이벤트 플로우 (1)](https://github.com/user-attachments/assets/986200c7-cd11-4c0b-a037-e7cc8266df82)
 
 
-- 애저 서비스 스펙
-- App Service 플랜 / 리전
-  
+- Azure 서비스 스펙
+  - Azure App Service
+    - <img width="1676" height="219" alt="image" src="https://github.com/user-attachments/assets/5543ab23-593c-4364-ae33-ccda7cb9197d" />
+  - Azure Cache Redis
+    - <img width="1739" height="103" alt="image" src="https://github.com/user-attachments/assets/d3cc4213-a0ae-40c9-b7f7-2929a0064eae" />
+  - Azure Openai
+    - <img width="1639" height="98" alt="image" src="https://github.com/user-attachments/assets/2475fb9e-5866-4c20-a26c-fe6f7a9e2929" />
+    - <img width="1682" height="297" alt="image" src="https://github.com/user-attachments/assets/9981bb34-06a3-41d4-89fc-4242ed7f4b44" />
+
+
 ---
 
 ## 2. 실행 / 배포 방법
 
-
-- 각 서비스 리포지토리 링크 & One-line Mission
+- **각 서비스 리포지토리 링크 & One-line Mission**
 
 | 서비스                     | 리포지토리                                                                       | One-line Mission              |
 | ----------------------- | --------------------------------------------------------------------------- | ----------------------------- |
