@@ -5,7 +5,9 @@
 * DTG : Digital Tacho Graph (디지털 운행 기록 장치)
 * FMS : Fleet Management System (통합 관리 서비스)
 
-## 📑 목차
+---
+
+## 📑 목차 (수정 예정)
 
 - [✨ 프로젝트 특장점](#1-프로젝트-특장점)
 - [📊 서비스 아키텍처 & 이벤트 플로우](#2-서비스-아키텍처-및-핵심-이벤트-플로우)
@@ -15,11 +17,14 @@
 - [📜 ADR (Architecture Decision Records)](#6-adr-architecture-decision-records)
 - [🌍 컨벤션 및 공유 자료 모음](#7-컨벤션-및-공유-자료-모음)
 
-
-
-  
 ---
-## 1. 프로젝트 특장점
+
+## 0. 소개
+- 팀명
+- 팀원 소개
+- 주요 기능
+- 데모 링크
+- 프로젝트 특장점
 
 - 🚀 **스트리밍 데이터 처리**: Redis Stream & Pub/Sub 기반
 
@@ -46,9 +51,12 @@
 
 
   ``` 자연어 입력만으로 예약·취소가 가능하며, LLM 기반 의도 파악으로 사용성을 크게 개선했습니다. Redis 캐시를 활용하여 대화의 맥락을 이어갑니다. 또한 필요 시 Agent가 자체 툴(ex: 차량 가능 여부 조회, 기존 예약 검증)을 스스로 호출하여 단순 LLM 추론보다 정확하고 일관된 결과를 제공합니다. ```
-  
 
-## 2. 서비스 아키텍처 및 핵심 이벤트 플로우
+- Swagger, 헬스체크
+
+---
+
+## 1. 서비스 아키텍처 및 핵심 이벤트 플로우
 
 - 서비스 아키텍처
 ![헤드셋 원정대 - 시스템 아키텍처](https://github.com/user-attachments/assets/9dc58135-5e4e-4c8c-bd9a-49a12f86ff24)
@@ -57,9 +65,15 @@
 ![헤드셋 원정대 - 핵심 이벤트 플로우 (1)](https://github.com/user-attachments/assets/986200c7-cd11-4c0b-a037-e7cc8266df82)
 
 
+- 애저 서비스 스펙
+- App Service 플랜 / 리전
+  
 ---
 
-## 3. 각 서비스 리포 링크 & One-line Mission
+## 2. 실행 / 배포 방법
+
+
+- 각 서비스 리포지토리 링크 & One-line Mission
 
 | 서비스                     | 리포지토리                                                                       | One-line Mission              |
 | ----------------------- | --------------------------------------------------------------------------- | ----------------------------- |
@@ -74,13 +88,7 @@
 
 ---
 
-## 4. ERD
-
-<img width="880" height="812" alt="ERD_kt-dtg-fms" src="https://github.com/user-attachments/assets/a91a0be9-28a8-4194-8a5c-615d6811b4c8" />
-
----
-
-## 5. api 및 dto
+## 3. API 계약
 
 - **API 계약 (엔드포인트 + DTO)**  
 ### [🚗 Car Service (8080)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Car_Service_API.md) 
@@ -123,11 +131,30 @@ Car Service:        http://localhost:8080/swagger-ui.html
 Analytics:          http://localhost:8083/swagger-ui.html
 DTG Service:        http://localhost:8085/swagger-ui.html
 ```
+---
+
+## 4. 데이터 모델
+
+- ERDCloud 링크
+
+<img width="880" height="812" alt="ERD_kt-dtg-fms" src="https://github.com/user-attachments/assets/a91a0be9-28a8-4194-8a5c-615d6811b4c8" />
+
 
 ---
 
-## 6. ADR (Architecture Decision Records)
+## 5. 회복탄력성 & 관측
+• 타임아웃/재시도/폴백 정책 요약(서비스 간 구간별 값)
+• 폴백 예시(예: Unknown User)와 트리거 조건
+• Correlation-Id 전파 규칙 + 로그 키( cid, svc, elapsedMs, status )
+• (있다면) Application Insights 대시보드/쿼리 링크
 
+## 6. 데모 시나리오
+• 데모 시나리오 흐름: 엔드투엔드 3~6단계(요청→가공→통계/응답)
+• 핵심 엔드포인트 목록(성능 기준 p95, 오류율 목표 같이 표기)
+• 실패/엣지 케이스 핸들링 요약
+
+## 7. 설계 - 구현 정합성, 변경 이력
+- ADR (Architecture Decision Records)
 **(1) ADR-001: RDB로 PostgreSQL 선택**
 
 - Context: 예약 중복 방지와 시간 범위 쿼리가 많음
@@ -172,21 +199,8 @@ DTG Service:        http://localhost:8085/swagger-ui.html
 - Consequence: 초기 개발과 적용이 용이, 단 코드 레벨에서의 레이스 컨디션 위험은 존재
 
 ---
-  
 
-## 7. 컨벤션 및 공유 자료 모음
-- [프로젝트 기획서](https://docs.google.com/document/d/1HPhWYdSCaW_UycXsQGsRFQ6wy3SvAwCacChCETTccKY/edit?tab=t.0)
-- [FP 산정 시트](https://docs.google.com/spreadsheets/d/11p7Wmf7TJH4ZsfxWPAp8_TwIe4qGc4qaDQb3Sh7QISA/edit?gid=2082954959#gid=2082954959)
-
-- [github projects](https://github.com/orgs/KT-GIGA-FMS/projects/3)
-  - <img width="1912" height="1036" alt="image" src="https://github.com/user-attachments/assets/6df38afe-7d37-4b4e-8b93-cf450789523c" />
-- [Notion](https://www.notion.so/KT-250de2e870a180fbb45ef1ea86d7874e?source=copy_link)
-- [Miro Board](https://miro.com/app/board/uXjVJT7T_I8=/)
-- [DB/ERD](https://www.erdcloud.com/d/aqyjwmcWrcmSoYD4S)
-
----
-
-- [아이디어 모음집](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/ROADMAP.md)
+## 8. 협업, 품질 운영
 - 컨벤션
   - 이슈 컨벤션
   ```
@@ -217,4 +231,21 @@ DTG Service:        http://localhost:8085/swagger-ui.html
   - 상세 변경 사항 1
   - 상세 변경 사항 2
   ```
+
+---
+  
+## 9. 공유 자료 모음
+- [프로젝트 기획서](https://docs.google.com/document/d/1HPhWYdSCaW_UycXsQGsRFQ6wy3SvAwCacChCETTccKY/edit?tab=t.0)
+- [FP 산정 시트](https://docs.google.com/spreadsheets/d/11p7Wmf7TJH4ZsfxWPAp8_TwIe4qGc4qaDQb3Sh7QISA/edit?gid=2082954959#gid=2082954959)
+
+- [github projects](https://github.com/orgs/KT-GIGA-FMS/projects/3)
+  - <img width="1912" height="1036" alt="image" src="https://github.com/user-attachments/assets/6df38afe-7d37-4b4e-8b93-cf450789523c" />
+- [Notion](https://www.notion.so/KT-250de2e870a180fbb45ef1ea86d7874e?source=copy_link)
+- [Miro Board](https://miro.com/app/board/uXjVJT7T_I8=/)
+- [DB/ERD](https://www.erdcloud.com/d/aqyjwmcWrcmSoYD4S)
+
+
+
+- [아이디어 모음집](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/ROADMAP.md)
+
   
