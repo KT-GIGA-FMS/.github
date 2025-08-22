@@ -144,7 +144,7 @@ DTG Service:        http://localhost:8085/swagger-ui.html
 
 ## 4. 데이터 모델
 
-- ERDCloud 링크
+- [ERDCloud](https://www.erdcloud.com/d/aqyjwmcWrcmSoYD4S)
 
 <img width="880" height="812" alt="ERD_kt-dtg-fms" src="https://github.com/user-attachments/assets/a91a0be9-28a8-4194-8a5c-615d6811b4c8" />
 
