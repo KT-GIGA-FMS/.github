@@ -108,6 +108,21 @@
 | 🚗 DTG                  | [DTG](https://github.com/KT-GIGA-FMS/DTG)                                   | 차량 디지털 운행기록장치 연동              |
 | ⚙️ .github              | [.github](https://github.com/KT-GIGA-FMS/.github)                           | 공통 워크플로우 및 설정 관리              |
 
+CI/CD의 주요 특징
+1. 자동화된 배포 파이프라인
+  - Git push → 자동 빌드 → 자동 배포
+  - 수동 실행도 가능 (workflow_dispatch)
+2. 컨테이너 기반 배포
+  - Docker 이미지로 일관된 환경 보장
+  - Azure Web App for Containers 활용
+3. 품질 보증
+  - 헬스체크를 통한 서비스 상태 모니터링
+  - API 테스트를 통한 기능 검증
+  - 배포 실패 시 자동 롤백 가능
+4. 보안 강화
+  - GitHub Secrets를 통한 민감 정보 관리
+  - non-root 사용자로 컨테이너 실행
+  - 환경 변수를 통한 설정 분리
 ---
 
 ## 3. API 계약
