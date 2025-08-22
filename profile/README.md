@@ -166,48 +166,42 @@
 
 ## 7. 설계 - 구현 정합성, 변경 이력
 - ADR (Architecture Decision Records)
-**(1) ADR-001: RDB로 PostgreSQL 선택**
 
-- Context: 예약 중복 방지와 시간 범위 쿼리가 많음
-- Alternatives: MySQL(팀에 익숙), 기능적 차이는 크지 않음
-- Decision: 수업에서 다룬 경험과 학습을 고려해 PostgreSQL 선택
-- Consequence: 안정적인 트랜잭션 처리와 시계열 쿼리 지원
-
-
-
-**(2) ADR-002: 실시간 파이프는 Redis (Stream + ZSET)**
-
-- Context: 법인 차량 약 100대 관제 규모에는 Redis 성능 충분
-- Alternatives: Kafka(대규모에 적합) → 현재는 오버엔지니어링
-- Decision: Redis Streams + ZSET
-- Consequence: 운영 단순, 필요 시 대규모 확장 가능
+- (1) ADR-001: RDB로 PostgreSQL 선택
+  - Context: 예약 중복 방지와 시간 범위 쿼리가 많음
+  - Alternatives: MySQL(팀에 익숙), 기능적 차이는 크지 않음
+  - Decision: 수업에서 다룬 경험과 학습을 고려해 PostgreSQL 선택
+  - Consequence: 안정적인 트랜잭션 처리와 시계열 쿼리 지원
 
 
 
-**(3) ADR-003: API Gateway는 Azure APIM**
-
-- Context: 키 관리, 레이트리밋, CORS 중앙화 필요
-- Alternatives: Kong, NGINX, Tyk, AWS API Gateway 등 존재
-- Decision: 가장 빠르게 도입 가능한 Azure APIM 선택
-- Consequence: 서비스별 독립 배포, 보안정책 일원화
-
-
-
-**(4) ADR-004: 실시간 전송은 WebSocket, 대체는 SSE**
-
-- Context: 지도 실시간 업데이트
-- Alternatives: Polling(비효율)
-- Decision: WS 우선, 장애 시 SSE 폴백
-- Consequence: 방화벽/프록시 호환성 개선
+- (2) ADR-002: 실시간 파이프는 Redis (Stream + ZSET)
+  - Context: 법인 차량 약 100대 관제 규모에는 Redis 성능 충분
+  - Alternatives: Kafka(대규모에 적합) → 현재는 오버엔지니어링
+  - Decision: Redis Streams + ZSET
+  - Consequence: 운영 단순, 필요 시 대규모 확장 가능
 
 
 
-**(5) ADR-005: 예약 겹침 방지는 코드 로직으로 처리**
+- (3) ADR-003: API Gateway는 Azure APIM
+  - Context: 키 관리, 레이트리밋, CORS 중앙화 필요
+  - Alternatives: Kong, NGINX, Tyk, AWS API Gateway 등 존재
+  - Decision: 가장 빠르게 도입 가능한 Azure APIM 선택
+  - Consequence: 서비스별 독립 배포, 보안정책 일원화
 
-- Context: 분산 환경에서 동일 시간대에 중복 예약 시도 가능성 존재
-- Alternatives: DB 제약 조건(EXCLUDE USING GIST)으로 강제, 다만 적용 난이도와 학습 부담 있음
-- Decision: 현재는 애플리케이션 코드 레벨에서 겹침 검사 로직을 구현하고, 추후 운영 안정화 단계에서 DB 제약 조건 적용 예정
-- Consequence: 초기 개발과 적용이 용이, 단 코드 레벨에서의 레이스 컨디션 위험은 존재
+
+- (4) ADR-004: 차량 관제 데이터 실시간 전송은 WebSocket (대안으로 SSE)
+  - Context: 지도 실시간 업데이트
+  - Alternatives: Polling(비효율)
+  - Decision: WS 우선, 장애 시 SSE 폴백
+  - Consequence: 방화벽/프록시 호환성 개선
+
+
+- (5) ADR-005: 예약 겹침 방지는 코드 로직으로 처리
+  - Context: 분산 환경에서 동일 시간대에 중복 예약 시도 가능성 존재
+  - Alternatives: DB 제약 조건(EXCLUDE USING GIST)으로 강제, 다만 적용 난이도 있음
+  - Decision: 현재는 애플리케이션 코드 레벨에서 겹침 검사 로직을 구현하고, 추후 운영 안정화 단계에서 DB 제약 조건 적용 예정
+  - Consequence: 초기 개발과 적용이 용이, 단 코드 레벨에서의 레이스 컨디션 위험은 존재
 
 ---
 
