@@ -72,6 +72,11 @@
 - **핵심 이벤트 플로우**
 ![헤드셋 원정대 - 핵심 이벤트 플로우 (1)](https://github.com/user-attachments/assets/986200c7-cd11-4c0b-a037-e7cc8266df82)
 
+- icon 출처
+  - <a href="https://www.flaticon.com/kr/free-icons/" title="관리자 아이콘">관리자 아이콘 제작자: itim2101 - Flaticon</a>
+  - <a href="https://www.flaticon.com/free-icons/car" title="car icons">Car icons created by Freepik - Flaticon</a>
+  - <a href="https://www.flaticon.com/kr/free-icons/" title="운전 아이콘">운전 아이콘 제작자: Freepik - Flaticon</a>
+  
 
 - Azure 서비스 스펙
   - Azure App Service
