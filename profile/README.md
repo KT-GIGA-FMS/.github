@@ -11,10 +11,10 @@
 
 - [0. 소개](#0-소개)
 - [1. 서비스 아키텍처 및 핵심 이벤트 플로우](#1-서비스-아키텍처-및-핵심-이벤트-플로우)
-- [2. 서비스별 Repo 링크 및 실행 방법](#2-서비스별-Repo-링크-및-실행-방법)
-- [3. ERD 계약](#3-ERD-계약)
+- [2. 서비스별 Repo 링크 및 실행 방법](#2-서비스별-repo-링크-및-실행-방법)
+- [3. ERD 계약](#3-erd-계약)
 - [4. 데이터 모델](#4-데이터-모델)
-- [5. 회복탄력성 & 관측](#5-회복탄력성-&-관측)
+- [5. 회복탄력성 & 관측](#5-회복탄력성-관측)
 - [6. 데모 시나리오](#6-데모-시나리오)
 - [7. 설계 - 구현 정합성, 변경 이력](#7-설계-구현-정합성-변경-이력)
 - [8. 협업, 품질 운영](#8-협업-품질-운영)
@@ -106,6 +106,7 @@
 ---
 
 ## 2. 서비스별 Repo 링크 및 실행 방법
+<a name="2-서비스별-repo-링크-및-실행-방법"></a>
 
 - **각 서비스 리포지토리 링크 & One-line Mission**
 
@@ -138,6 +139,7 @@ CI/CD의 주요 특징
 ---
 
 ## 3. API 계약
+<a name="3-erd-계약"></a>
 
 - [car-tracking-service Swagger](https://car-tracking-service-hmarhqf6a0f8abb4.koreacentral-01.azurewebsites.net/swagger-ui/index.html)
 - [user-service Swagger](https://user-service-fbh3ctfghxhzerbq.koreacentral-01.azurewebsites.net/swagger-ui/index.html)
@@ -184,6 +186,8 @@ CI/CD의 주요 특징
 ---
 
 ## 5. 회복탄력성 & 관측
+<a name="5-회복탄력성-관측"></a>
+
 **1) APIM 전역 정책 적용**
 - CORS 설정: 모든 Origin(*), 주요 HTTP 메서드(GET/POST/PUT/PATCH/DELETE/OPTIONS), 헤더(*) 허용.
 - Correlation-Id 전파: X-Correlation-Id가 없으면 UUID 생성 후 요청·응답·에러에 헤더 삽입.
@@ -276,6 +280,8 @@ B. 실시간 차량 확인·관제 (관리자)
 ---
 
 ## 7. 설계 - 구현 정합성, 변경 이력
+<a name="7-설계-구현-정합성-변경-이력"></a>
+
 - ADR (Architecture Decision Records)
 
 - (1) ADR-001: RDB로 PostgreSQL 선택
