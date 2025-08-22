@@ -105,19 +105,19 @@
 - [ai-agent Swagger](https://ai-agent-b9asf5aebwajamfy.koreacentral-01.azurewebsites.net/docs#/)
 
 - API 계약 (엔드포인트 + DTO)
-  ### [🚗 Car Service (8080)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Car_Service_API.md) 
+  ### [🚗 Car Service](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Car_Service_API.md) 
   ```
   POST   /api/v1/cars/register          - 차량 등록
   GET    /api/v1/cars                   - 차량 목록 조회 (페이지네이션)
   ```
   
-  ### [📊 Analytics Service (8083)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Analytics_Service_API.md)
+  ### [📊 Analytics Service](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Analytics_Service_API.md)
   ```
   GET    /api/v1/analytics/vehicles/{id}/statistics    - 차량 통계 조회
   POST   /api/v1/analytics/vehicles/statistics/batch  - 차량 통계 일괄 조회
   ```
   
-  ### [🚀 DTG Service (8085)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/DTG_Service_API.md)
+  ### [🚀 DTG Service](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/DTG_Service_API.md)
   ```
   POST   /api/v1/dtg/trips/start        - 운행 시작
   POST   /api/v1/dtg/trips/end          - 운행 종료
@@ -126,26 +126,12 @@
   GET    /api/v1/dtg/health             - 서비스 상태
   ```
   
-  ### [📍 Car Tracking Service (8080)](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Car_Tracking_Service_API.md)
+  ### [📍 Car Tracking Service](https://github.com/KT-GIGA-FMS/.github/blob/main/profile/Car_Tracking_Service_API.md)
   ```
   POST   /api/v1/tracking/trips/start   - DTG 운행 시작 수신
   POST   /api/v1/tracking/trips/end     - DTG 운행 종료 수신
   POST   /api/v1/tracking/data          - DTG 실시간 데이터 수신
   ```
-  
-  ### 🌐 WebSocket Endpoints
-  ```
-  DTG Service:        ws://localhost:8085/ws
-  Car Tracking:       ws://localhost:8080/ws
-  ```
-  
-  ### 🧰Swagger UI
-  ```
-  Car Service:        http://localhost:8080/swagger-ui.html
-  Analytics:          http://localhost:8083/swagger-ui.html
-  DTG Service:        http://localhost:8085/swagger-ui.html
-  ```
-  ---
 
 ## 4. 데이터 모델
 
