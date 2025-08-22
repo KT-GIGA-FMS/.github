@@ -1,5 +1,5 @@
 # 🚗 법인 차량 관제 서비스 (KT DTG FMS) 프로젝트
-## 🚀 **실시간 차량 관제 · 예약 관리 · 운행 이력 분석을 제공하는 MSA 기반 법인 차량 관제 플랫폼**
+## 🚀 실시간 차량 관제 · 예약 관리 · 운행 이력 분석 서비스를 제공하는 MSA 기반 법인 차량 관제 플랫폼입니다.
 
 
 * DTG : Digital Tacho Graph (디지털 운행 기록 장치)
@@ -20,19 +20,20 @@
 ---
 
 ## 0. 소개
-- 팀명
-- 팀원 소개
-  - 길가은
-    
-  - 김예은
-    
-  - 장현우
-    
 - 주요 기능
-
+  - 실시간 차량 운행 현황 확인
+  - 차량 예약 AI Agent
+  - 차량 정보 관리
+  - 운전자 정보 관리
+  - 운행 정보 분석
   
 - [데모 사이트](https://front-end-service-g6hghwc7ecgkathb.koreacentral-01.azurewebsites.net/car/cars)
-  
+
+- 팀원 소개
+  - [길가은](https://github.com/rlfrkdms1)
+  - [김예은](https://github.com/yeni28)
+  - [장현우](https://github.com/J-nowcow)
+
 ### 프로젝트 특장점
   
   - 🚀 **스트리밍 데이터 처리**: Redis Stream & Pub/Sub 기반
